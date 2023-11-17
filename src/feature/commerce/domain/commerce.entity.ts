@@ -43,4 +43,7 @@ export class Commerce {
 
   @Column({ default: 'INACTIVE' })
   status: COMMERCE_STATUS;
+
+  @Column({ type: 'datetime', default: () => 'GETDATE()' })
+  createdAt: string;
 }
