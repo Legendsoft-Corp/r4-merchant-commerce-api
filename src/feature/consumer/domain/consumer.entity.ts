@@ -2,6 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Consumer {
+  @Column({ unique: true })
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

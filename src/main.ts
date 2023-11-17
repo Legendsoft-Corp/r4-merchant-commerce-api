@@ -5,6 +5,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { SpelunkerModule } from 'nestjs-spelunker';
 import { otelSDK } from './config/tracing/tracing-config';
 import { Logger, LoggerErrorInterceptor } from 'nestjs-pino';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   // Otel
@@ -15,8 +16,8 @@ async function bootstrap() {
 
   // Swagger Config
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('R4 Merchant Base Project')
-    .setDescription(`Base project for R4 Merchant's services`)
+    .setTitle('R4 Merchant Commerce API')
+    .setDescription(`Commerce Management for R4 Merchant's services`)
     .setVersion('1.0')
     .addTag('R4 Merchant')
     .build();
@@ -43,6 +44,9 @@ async function bootstrap() {
 
   // Logger
   app.useLogger(app.get(Logger));
+
+  // ValidationPipe
+  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(port);
   app.useGlobalInterceptors(new LoggerErrorInterceptor());

@@ -28,7 +28,7 @@ const spanProcessor =
 
 export const otelSDK = new NodeSDK({
   resource: new Resource({
-    [SemanticResourceAttributes.SERVICE_NAME]: 'r4-merchant-starter-project',
+    [SemanticResourceAttributes.SERVICE_NAME]: 'r4-merchant-commerce-api',
   }),
   spanProcessor: spanProcessor,
   instrumentations: [
