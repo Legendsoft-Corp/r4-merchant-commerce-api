@@ -1,4 +1,12 @@
 export const TYPES = {
-  application: { ICreateCommerceApplication: 'ICreateCommerceApplication' },
-  service: { ICreateCommerceService: 'ICreateCommerceService' },
+  application: {
+    ICreateCommerceApplication: 'ICreateCommerceApplication',
+    IGetCommerceByIdApplication: 'IGetCommerceByIdApplication',
+    IGetCommerceByUserApplication: 'IGetCommerceByUserApplication',
+  },
+  service: {
+    ICreateCommerceService: 'ICreateCommerceService',
+    IGetCommerceByIdService: 'IGetCommerceByIdService',
+    IGetCommerceByUserService: 'IGetCommerceByUserService',
+  },
 };

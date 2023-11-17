@@ -8,7 +8,7 @@ import { CommerceDomain } from '../domain/commerce.domain';
 @Catch(QueryFailedError, EntityNotFoundError)
 @Injectable()
 export class CreateCommerceService implements ICreateCommerceService {
-  regex = /\(([^)]+)\)/;
+  private _regex = /\(([^)]+)\)/;
 
   constructor(
     @InjectRepository(Commerce)
@@ -27,7 +27,7 @@ export class CreateCommerceService implements ICreateCommerceService {
     return await this._commerceRepository
       .save(commerceEntity)
       .catch((error) => {
-        const valueError = this.regex.exec(
+        const valueError = this._regex.exec(
           error.driverError.originalError.info.message,
         );
         return `El valor ${
