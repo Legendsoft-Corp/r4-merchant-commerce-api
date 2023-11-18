@@ -7,6 +7,7 @@ import { Commerce } from './domain/commerce.entity';
 import { CommerceController } from './controller/commerce.controller';
 import { GetCommerceByIdApplication } from './application/get-commerce-by-id.application';
 import { GetCommerceByIdService } from './service/get-commerce-by-id.service';
+import { GetCommerceByUserService } from './service/get-commerce-by-user.service';
 
 const createCommerceApp = {
   provide: TYPES.application.ICreateCommerceApplication,
@@ -28,6 +29,16 @@ const getCommerceByIdService = {
   useClass: GetCommerceByIdService,
 };
 
+const getCommerceByUserApp = {
+  provide: TYPES.application.IGetCommerceByUserApplication,
+  useClass: GetCommerceByIdApplication,
+};
+
+const getCommerceByUserService = {
+  provide: TYPES.service.IGetCommerceByUserService,
+  useClass: GetCommerceByUserService,
+};
+
 @Module({
   imports: [TypeOrmModule.forFeature([Commerce])],
   providers: [
@@ -35,6 +46,8 @@ const getCommerceByIdService = {
     createCommerceService,
     getCommerceByIdApp,
     getCommerceByIdService,
+    getCommerceByUserApp,
+    getCommerceByUserService,
   ],
   controllers: [CommerceController],
 })
