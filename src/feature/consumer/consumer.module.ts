@@ -7,7 +7,6 @@ import { TYPES } from './interface/types';
 import { CreateConsumerService } from './service/create-consumer.service';
 import { ValidateConsumerAPIKeyApplication } from './application/validate-consumer-api-key-application';
 import { ValidateConsumerAPIKeyService } from './service/validate-consumer-api-key.service';
-import { AuthorizationGuard } from 'src/common/guard/authorization.guard';
 import { ActivateConsumerApplication } from './application/activate-consumer.application';
 import { ActivateConsumerService } from './service/activate-consumer.service';
 
@@ -45,7 +44,6 @@ const activateConsumerService = {
 @Module({
   imports: [TypeOrmModule.forFeature([Consumer])],
   providers: [
-    AuthorizationGuard,
     createConsumerApp,
     createConsumerService,
     validateConsumerAPIKeyApp,

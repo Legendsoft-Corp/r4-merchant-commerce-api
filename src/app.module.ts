@@ -9,6 +9,7 @@ import configuration from './config/configuration';
 import { LoggerModule } from 'nestjs-pino';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthorizationGuard } from './common/guard/authorization.guard';
+import { CommerceModule } from './feature/commerce/commerce.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { AuthorizationGuard } from './common/guard/authorization.guard';
       inject: [MSSQLConfigService],
     }),
     ConsumerModule,
+    CommerceModule,
   ],
   controllers: [AppController],
   providers: [
