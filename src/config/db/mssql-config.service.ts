@@ -4,6 +4,7 @@ import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
 import { IDatabaseConfig } from '../database-config.interface';
 import { Consumer } from 'src/feature/consumer/domain/consumer.entity';
 import { Commerce } from 'src/feature/commerce/domain/commerce.entity';
+import { Branch } from 'src/feature/branch/domain/branch.entity';
 
 @Injectable()
 export class MSSQLConfigService implements TypeOrmOptionsFactory {
@@ -34,7 +35,7 @@ export class MSSQLConfigService implements TypeOrmOptionsFactory {
       password: this.password,
       database: this.database,
       schema: 'dbo',
-      entities: [Consumer, Commerce],
+      entities: [Consumer, Commerce, Branch],
       synchronize: true,
       options: { encrypt: false, trustServerCertificate: true },
       retryAttempts: 2,
