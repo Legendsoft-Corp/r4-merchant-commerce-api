@@ -147,7 +147,7 @@ export class CommerceController {
     @Res() res,
     @Headers('x-consumer-id') id: string,
     @Headers('x-api-key') apiKey: string,
-    @Param('uuid')
+    @Param('id')
     commerceId: string,
   ) {
     this._logger.log(
@@ -205,7 +205,7 @@ export class CommerceController {
     @Res() res,
     @Headers('x-consumer-id') id: string,
     @Headers('x-api-key') apiKey: string,
-    @Param('uuid')
+    @Param('user')
     user: string,
   ) {
     this._logger.log(
