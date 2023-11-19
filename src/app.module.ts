@@ -10,6 +10,7 @@ import { LoggerModule } from 'nestjs-pino';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthorizationGuard } from './common/guard/authorization.guard';
 import { CommerceModule } from './feature/commerce/commerce.module';
+import { BranchModule } from './feature/branch/branch.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { CommerceModule } from './feature/commerce/commerce.module';
     }),
     ConsumerModule,
     CommerceModule,
+    BranchModule,
   ],
   controllers: [AppController],
   providers: [
