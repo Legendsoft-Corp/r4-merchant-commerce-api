@@ -52,8 +52,8 @@ export class CreateBranchRequestDTO {
   email: string;
 
   @ApiProperty({
-    maxLength: 20,
-    description: 'Correo electrónico asociado a la sucursal',
+    maxLength: 36,
+    description: 'Comercio a la sucursal',
     example: '61e47ad9-adb2-4dd2-90b4-1afca2948bee',
     required: true,
   })

@@ -11,7 +11,7 @@ export class Branch {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 50 })
+  @Column({ nullable: false, length: 50 })
   @Index({ unique: true })
   name: string;
 
