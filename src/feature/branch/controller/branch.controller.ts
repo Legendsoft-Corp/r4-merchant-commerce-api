@@ -55,7 +55,7 @@ export class BranchController {
    * @param createBranchRequest CreateBranchRequestDTO
    * @returns Response
    */
-  @ApiOperation({ summary: 'Crear un comercio' })
+  @ApiOperation({ summary: 'Crear una sucursal' })
   @Post()
   @ApiHeader({
     name: 'x-consumer-id',
@@ -67,7 +67,7 @@ export class BranchController {
   })
   @ApiBody({ type: CreateBranchRequestDTO })
   @ApiCreatedResponse({
-    description: 'Comercio creado exitosamente',
+    description: 'Sucursal creada exitosamente',
     type: CreateBranchResponseDTO,
   })
   @ApiBadRequestResponse({
