@@ -20,8 +20,8 @@ export class CreateBranchService implements ICreateBranchService {
    * @returns Promise<BranchDomain>
    */
   async create(branch: Partial<BranchDomain>): Promise<Error | BranchDomain> {
-    const commerceEntity = await this._branchRepository.create(branch);
-    return await this._branchRepository.save(commerceEntity).catch((error) => {
+    const branchEntity = await this._branchRepository.create(branch);
+    return await this._branchRepository.save(branchEntity).catch((error) => {
       const valueError = this._regex.exec(
         error.driverError.originalError.info.message,
       );

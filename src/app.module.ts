@@ -11,6 +11,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { AuthorizationGuard } from './common/guard/authorization.guard';
 import { CommerceModule } from './feature/commerce/commerce.module';
 import { BranchModule } from './feature/branch/branch.module';
+import { CashierModule } from './feature/cashier/cashier.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { BranchModule } from './feature/branch/branch.module';
     ConsumerModule,
     CommerceModule,
     BranchModule,
+    CashierModule,
   ],
   controllers: [AppController],
   providers: [
