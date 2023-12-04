@@ -9,6 +9,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Branch } from './domain/branch.entity';
 import { GetAllApplication } from './application/get-all.application';
 import { GetAllService } from './service/get-all.service';
+import { DeleteByIdApplication } from './application/delete-by-id.application';
+import { DeleteByIdService } from './service/delete-by-id.service';
+import { UpdateStatusApplication } from './application/update-status.application';
+import { UpdateStatusService } from './service/update-status.service';
 
 const createBranchApp = {
   provide: TYPES.application.ICreateBranchApplication,
@@ -40,6 +44,26 @@ const getAllService = {
   useClass: GetAllService,
 };
 
+const deleteByIdApp = {
+  provide: TYPES.application.IDeleteByIdApplication,
+  useClass: DeleteByIdApplication,
+};
+
+const deleteByIdService = {
+  provide: TYPES.service.IDeleteByIdService,
+  useClass: DeleteByIdService,
+};
+
+const updateStatusApp = {
+  provide: TYPES.application.IUpdateStatusApplication,
+  useClass: UpdateStatusApplication,
+};
+
+const updateStatusService = {
+  provide: TYPES.service.IUpdateStatusService,
+  useClass: UpdateStatusService,
+};
+
 @Module({
   imports: [TypeOrmModule.forFeature([Branch])],
   providers: [
@@ -49,6 +73,10 @@ const getAllService = {
     getBranchByIdService,
     getAllApp,
     getAllService,
+    deleteByIdApp,
+    deleteByIdService,
+    updateStatusApp,
+    updateStatusService,
   ],
   controllers: [BranchController],
 })

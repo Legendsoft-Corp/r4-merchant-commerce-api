@@ -3,6 +3,7 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 export enum BRANCH_STATUS {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
+  DELETED = 'DELETED',
 }
 
 @Entity()
