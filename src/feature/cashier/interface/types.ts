@@ -1,4 +1,10 @@
 export const TYPES = {
-  application: { ICreateApplication: 'ICreateApplication' },
-  service: { ICreateService: 'ICreateService' },
+  application: {
+    ICreateApplication: 'ICreateApplication',
+    IGetByBranchApplication: 'IGetByBranchApplication',
+  },
+  service: {
+    ICreateService: 'ICreateService',
+    IGetByBranchService: 'IGetByBranchService',
+  },
 };

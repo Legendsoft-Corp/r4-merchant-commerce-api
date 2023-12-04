@@ -1,4 +1,4 @@
-import { IsString } from 'class-validator';
+import { IsString, IsUUID } from 'class-validator';
 
 export class CashierDomain {
   @IsString()
@@ -6,4 +6,7 @@ export class CashierDomain {
 
   @IsString()
   name: string;
+
+  @IsUUID()
+  branch: string;
 }

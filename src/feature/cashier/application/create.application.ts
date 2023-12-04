@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { TYPES } from '../interface/types';
-import { ICreateService } from '../interface/service/create.service';
+import { ICreateService } from '../interface/service/create-service.interface';
 import { ICreateApplication } from '../interface/application/create-application.interface';
 import { CashierDomain } from '../domain/cashier.domain';
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ICreateService } from '../interface/service/create.service';
+import { ICreateService } from '../interface/service/create-service.interface';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cashier } from '../domain/cashier.entity';
 import { Repository } from 'typeorm';
