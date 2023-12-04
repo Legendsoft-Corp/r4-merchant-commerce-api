@@ -7,6 +7,8 @@ import { GetBranchByIdService } from './service/get-branch-by-id.service';
 import { BranchController } from './controller/branch.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Branch } from './domain/branch.entity';
+import { GetAllApplication } from './application/get-all.application';
+import { GetAllService } from './service/get-all.service';
 
 const createBranchApp = {
   provide: TYPES.application.ICreateBranchApplication,
@@ -28,6 +30,16 @@ const getBranchByIdService = {
   useClass: GetBranchByIdService,
 };
 
+const getAllApp = {
+  provide: TYPES.application.IGetAllApplication,
+  useClass: GetAllApplication,
+};
+
+const getAllService = {
+  provide: TYPES.service.IGetAllService,
+  useClass: GetAllService,
+};
+
 @Module({
   imports: [TypeOrmModule.forFeature([Branch])],
   providers: [
@@ -35,6 +47,8 @@ const getBranchByIdService = {
     createBranchService,
     getBranchByIdApplication,
     getBranchByIdService,
+    getAllApp,
+    getAllService,
   ],
   controllers: [BranchController],
 })

@@ -8,6 +8,7 @@ import { CommerceController } from './controller/commerce.controller';
 import { GetCommerceByIdApplication } from './application/get-commerce-by-id.application';
 import { GetCommerceByIdService } from './service/get-commerce-by-id.service';
 import { GetCommerceByUserService } from './service/get-commerce-by-user.service';
+import { GetCommerceByUserApplication } from './application/get-commerce-by-user.application';
 
 const createCommerceApp = {
   provide: TYPES.application.ICreateCommerceApplication,
@@ -31,7 +32,7 @@ const getCommerceByIdService = {
 
 const getCommerceByUserApp = {
   provide: TYPES.application.IGetCommerceByUserApplication,
-  useClass: GetCommerceByIdApplication,
+  useClass: GetCommerceByUserApplication,
 };
 
 const getCommerceByUserService = {

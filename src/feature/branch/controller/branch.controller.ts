@@ -34,6 +34,8 @@ import {
 } from 'src/common/DTO';
 import { IGetBranchByIdApplication } from '../interface/application/get-branch-by-id-application.interface';
 import { GetBranchByIdResponseDTO } from './DTO/get-branch-by-id-response.dto';
+import { GetAllByCommerceResponseDTO } from './DTO/get-all-by-commerce-response.dto';
+import { IGetAllApplication } from '../interface/application/get-all-application.interface';
 @ApiTags('Branches')
 @UseGuards(AuthorizationGuard)
 @Controller('branches')
@@ -45,6 +47,8 @@ export class BranchController {
     private _createBranchApp: ICreateBranchApplication,
     @Inject(TYPES.application.IGetBranchByIdApplication)
     private _getBranchByIdApp: IGetBranchByIdApplication,
+    @Inject(TYPES.application.IGetAllApplication)
+    private _getAllApp: IGetAllApplication,
   ) {}
 
   /**
@@ -102,6 +106,61 @@ export class BranchController {
       'Create Branch Response',
     );
     return res.status(HttpStatus.CREATED).json(stock);
+  }
+
+  /**
+   * @method getAll
+   * @param res Response
+   * @param apiKey string
+   * @param id string
+   * @param commerce: string
+   * @returns Response
+   */
+  @ApiOperation({ summary: 'Consultar un sucursales por comercio' })
+  @Get('by-commerce/:commerce')
+  @ApiHeader({
+    name: 'x-consumer-id',
+    description: 'Identificador del consumidor autorizado',
+  })
+  @ApiHeader({
+    name: 'x-api-key',
+    description: 'API Key del consumer autorizado',
+  })
+  @ApiParam({ name: 'commerce', description: 'Identificador del comercio' })
+  @ApiCreatedResponse({
+    description: 'Sucursales Encontradas',
+    type: GetAllByCommerceResponseDTO,
+  })
+  @ApiBadRequestResponse({
+    description: 'Error en la validación de los datos enviados',
+    type: BadRequestErrorResponseDTO,
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Error de autenticación',
+    type: UnauthorizedErrorResponseDTO,
+  })
+  @ApiInternalServerErrorResponse({
+    description: 'Error interno del servidor',
+    type: InternalServerErrorResponseDTO,
+  })
+  async getAll(
+    @Req() req,
+    @Res() res,
+    @Headers('x-consumer-id') id: string,
+    @Headers('x-api-key') apiKey: string,
+    @Param('commerce')
+    commerce: string,
+  ) {
+    this._logger.log(
+      { id: 'get-branch-by-id-request', body: req.body },
+      'Get Branch Request',
+    );
+    const stock = await this._getAllApp.get(commerce);
+    this._logger.log(
+      { id: 'get-branch-by-id-response', body: stock },
+      'Get Branch Response',
+    );
+    return res.status(HttpStatus.OK).json(stock);
   }
 
   /**
