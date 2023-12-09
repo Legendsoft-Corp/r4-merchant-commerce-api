@@ -46,8 +46,8 @@ export class CreateCommerceResponseDTO {
     required: true,
   })
   @IsString()
-  @Length(5, 50, {
-    message: 'name debe tener una longitud desde 5 hasta 50 caracteres',
+  @Length(3, 50, {
+    message: 'name debe tener una longitud desde 3 hasta 50 caracteres',
   })
   name: string;
 
