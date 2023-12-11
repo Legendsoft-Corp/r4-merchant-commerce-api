@@ -1,5 +1,11 @@
 import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
 
+export enum CASHIER_STATUS {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  DELETED = 'DELETED',
+}
+
 @Entity()
 export class Cashier {
   @Column({ unique: true })
@@ -13,4 +19,7 @@ export class Cashier {
   @Column({ length: 36 })
   @Index('uuid')
   branch: string;
+
+  @Column()
+  status: CASHIER_STATUS;
 }
