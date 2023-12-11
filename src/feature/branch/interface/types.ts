@@ -5,6 +5,7 @@ export const TYPES = {
     IGetAllApplication: 'IGetAllApplication',
     IDeleteByIdApplication: 'IDeleteByIdApplication',
     IUpdateStatusApplication: 'IUpdateStatusApplication',
+    IUpdateBranchApplication: 'IUpdateBranchApplication',
   },
   service: {
     ICreateBranchService: 'ICreateBranchService',
@@ -12,5 +13,6 @@ export const TYPES = {
     IGetAllService: 'IGetAllService',
     IDeleteByIdService: 'IDeleteByIdService',
     IUpdateStatusService: 'IUpdateStatusService',
+    IUpdateBranchService: 'IUpdateBranchService',
   },
 };

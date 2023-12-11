@@ -13,6 +13,8 @@ import { DeleteByIdApplication } from './application/delete-by-id.application';
 import { DeleteByIdService } from './service/delete-by-id.service';
 import { UpdateStatusApplication } from './application/update-status.application';
 import { UpdateStatusService } from './service/update-status.service';
+import { UpdateBranchApplication } from './application/update-branch.application';
+import { UpdateBranchService } from './service/update-branch.service';
 
 const createBranchApp = {
   provide: TYPES.application.ICreateBranchApplication,
@@ -64,6 +66,16 @@ const updateStatusService = {
   useClass: UpdateStatusService,
 };
 
+const updateBranchApplication = {
+  provide: TYPES.application.IUpdateBranchApplication,
+  useClass: UpdateBranchApplication,
+};
+
+const updateBranchService = {
+  provide: TYPES.service.IUpdateBranchService,
+  useClass: UpdateBranchService,
+};
+
 @Module({
   imports: [TypeOrmModule.forFeature([Branch])],
   providers: [
@@ -77,6 +89,8 @@ const updateStatusService = {
     deleteByIdService,
     updateStatusApp,
     updateStatusService,
+    updateBranchApplication,
+    updateBranchService,
   ],
   controllers: [BranchController],
 })

@@ -41,6 +41,8 @@ import { IGetAllApplication } from '../interface/application/get-all-application
 import { IDeleteByIdApplication } from '../interface/application/delete-by-id-application.interface';
 import { IUpdateStatusApplication } from '../interface/application/update-status-application.interface';
 import { UpdateStatusRequestDTO } from './DTO/update-status-request.dto';
+import { UpdateBranchRequestDTO } from './DTO/update-branch-request.dto';
+import { IUpdateBranchApplication } from '../interface/application/update-branch-application.interface';
 @ApiTags('Branches')
 @UseGuards(AuthorizationGuard)
 @Controller('branches')
@@ -58,6 +60,8 @@ export class BranchController {
     private _deleteByIdApp: IDeleteByIdApplication,
     @Inject(TYPES.application.IUpdateStatusApplication)
     private _updateStatusApp: IUpdateStatusApplication,
+    @Inject(TYPES.application.IUpdateBranchApplication)
+    private _updateBranchApp: IUpdateBranchApplication,
   ) {}
 
   /**
@@ -336,6 +340,65 @@ export class BranchController {
     );
     this._logger.log(
       { id: 'update-branch-status-response', body: stock },
+      'Update Branch Response',
+    );
+    return res.status(HttpStatus.OK).json(stock);
+  }
+
+  /**
+   * @method update
+   * @param res Response
+   * @param apiKey string
+   * @param id string
+   * @param branchId string
+   * @returns Response
+   */
+  @ApiOperation({ summary: 'Actualizar una sucursal por ID' })
+  @Put(':id')
+  @ApiHeader({
+    name: 'x-consumer-id',
+    description: 'Identificador del consumidor autorizado',
+  })
+  @ApiHeader({
+    name: 'x-api-key',
+    description: 'API Key del consumidor autorizado',
+  })
+  @ApiParam({ name: 'id', description: 'Identificador de la sucursal' })
+  @ApiCreatedResponse({
+    description: 'Sucursal Actualizada',
+    type: GetBranchByIdResponseDTO,
+  })
+  @ApiBadRequestResponse({
+    description: 'Error en la validación de los datos enviados',
+    type: BadRequestErrorResponseDTO,
+  })
+  @ApiUnauthorizedResponse({
+    description: 'Error de autenticación',
+    type: UnauthorizedErrorResponseDTO,
+  })
+  @ApiInternalServerErrorResponse({
+    description: 'Error interno del servidor',
+    type: InternalServerErrorResponseDTO,
+  })
+  async update(
+    @Req() req,
+    @Res() res,
+    @Headers('x-consumer-id') id: string,
+    @Headers('x-api-key') apiKey: string,
+    @Param('id')
+    branchId: string,
+    @Body() updateBranchRequest: UpdateBranchRequestDTO,
+  ) {
+    this._logger.log(
+      { id: 'update-branch-request', body: req.body },
+      'Update Branch Request',
+    );
+    const stock = await this._updateBranchApp.update(
+      branchId,
+      updateBranchRequest,
+    );
+    this._logger.log(
+      { id: 'update-branch-response', body: stock },
       'Update Branch Response',
     );
     return res.status(HttpStatus.OK).json(stock);
