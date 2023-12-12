@@ -1,4 +1,4 @@
-import { IsString, IsUUID } from 'class-validator';
+import { IsOptional, IsString, IsUUID } from 'class-validator';
 import { CASHIER_STATUS } from './cashier.entity';
 
 export class CashierDomain {
@@ -12,5 +12,6 @@ export class CashierDomain {
   branch: string;
 
   @IsString()
+  @IsOptional()
   status: CASHIER_STATUS;
 }
