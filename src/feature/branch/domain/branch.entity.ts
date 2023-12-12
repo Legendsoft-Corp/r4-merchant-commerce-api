@@ -13,18 +13,18 @@ export class Branch {
   id: string;
 
   @Column({ nullable: false, length: 50 })
-  @Index({ unique: true })
+  @Index()
   name: string;
 
   @Column({ nullable: false, length: 70 })
   address: string;
 
   @Column({ nullable: false, length: 11 })
-  @Index({ unique: true })
+  @Index()
   phoneNumber: string;
 
   @Column({ nullable: false, length: 50 })
-  @Index({ unique: true })
+  @Index()
   email: string;
 
   @Column({ default: 'INACTIVE' })

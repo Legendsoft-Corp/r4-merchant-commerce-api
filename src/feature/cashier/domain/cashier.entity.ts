@@ -13,7 +13,7 @@ export class Cashier {
   id: string;
 
   @Column({ nullable: false, length: 50 })
-  @Index({ unique: true })
+  @Index()
   name: string;
 
   @Column({ length: 36 })
