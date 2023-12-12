@@ -1,4 +1,5 @@
 import { IsString, IsUUID } from 'class-validator';
+import { CASHIER_STATUS } from './cashier.entity';
 
 export class CashierDomain {
   @IsString()
@@ -11,5 +12,5 @@ export class CashierDomain {
   branch: string;
 
   @IsString()
-  status: string;
+  status: CASHIER_STATUS;
 }
