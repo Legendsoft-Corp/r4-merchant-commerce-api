@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEnum, IsString, IsUUID } from 'class-validator';
-import { CASHIER_STATUS } from '../../domain/cashier.entity';
+import { IsString, IsUUID } from 'class-validator';
 
 export class CreateCashierRequestDTO {
   @ApiProperty()
@@ -10,8 +9,4 @@ export class CreateCashierRequestDTO {
   @ApiProperty()
   @IsUUID()
   branch: string;
-
-  @ApiProperty()
-  @IsEnum(CASHIER_STATUS)
-  status: CASHIER_STATUS;
 }
