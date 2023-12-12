@@ -20,6 +20,6 @@ export class Cashier {
   @Index('uuid')
   branch: string;
 
-  @Column()
+  @Column({ default: CASHIER_STATUS.INACTIVE })
   status: CASHIER_STATUS;
 }

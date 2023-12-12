@@ -9,4 +9,7 @@ export class CashierDomain {
 
   @IsUUID()
   branch: string;
+
+  @IsString()
+  status: string;
 }
