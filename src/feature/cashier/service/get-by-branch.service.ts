@@ -19,7 +19,7 @@ export class GetByBranchService implements IGetByBranchService {
    */
   async get(branch: string): Promise<CashierDomain[]> {
     const cashiers = await this._cashierRepository
-      .find({ where: { branch, status } })
+      .find({ where: { branch } })
       .then((result) => result)
       .catch((error) => {
         error;
