@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { IGetByBranchService } from '../interface/service/get-by-branch.interface';
-import { Cashier } from '../domain/cashier.entity';
+import { CASHIER_STATUS, Cashier } from '../domain/cashier.entity';
 import { CashierDomain } from '../domain/cashier.domain';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class GetByBranchService implements IGetByBranchService {
    */
   async get(branch: string): Promise<CashierDomain[]> {
     const cashiers = await this._cashierRepository
-      .find({ where: { branch } })
+      .find({ where: { branch, status } })
       .then((result) => result)
       .catch((error) => {
         error;
@@ -29,6 +29,8 @@ export class GetByBranchService implements IGetByBranchService {
       throw new BadRequestException('No existen cajas para esta sucursal');
     }
 
-    return cashiers;
+    return cashiers.filter(
+      (cashier) => cashier.status !== CASHIER_STATUS.DELETED,
+    );
   }
 }
